@@ -56,3 +56,95 @@
 .burger__icon:after {
     top: 14px;
 }
+
+.swiper {
+    --swiper-navigation-size: 1.5rem;
+    --swiper-theme-color: var(--color-green-400);
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        left: 5px;
+        transition: 0.3s;
+
+        svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        top: calc(50% + 1px);
+    }
+
+    .swiper-button-prev {
+        &:hover {
+            --swiper-navigation-size: 34px;
+            left: 0;
+        }
+    }
+
+    .swiper-button-next {
+        right: 5px;
+
+        &:hover {
+            --swiper-navigation-size: 34px;
+            right: 0;
+        }
+    }
+
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+        bottom: 0;
+    }
+
+    .swiper-pagination-bullet {
+        --size: 19.6px;
+        margin: 0 2px;
+        width: var(--size);
+        height: var(--size);
+        background: transparent;
+        opacity: 1;
+        transition: 0.3s;
+        position: relative;
+
+        svg {
+            --size: 14px;
+            transition: 0.3s;
+            width: var(--size);
+            height: var(--size);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &:hover {
+            svg {
+                --size: 19.6px;
+                width: var(--size);
+                height: var(--size);
+            }
+        }
+    }
+
+    .swiper-pagination-bullet-active {
+        svg {
+            --size: 19.6px;
+            width: var(--size);
+            height: var(--size);
+        }
+
+        .inner {
+            stroke-dashoffset: -7.85;
+            stroke-dashoffset: -15.7;
+            stroke-dashoffset: -23.5;
+            stroke-dashoffset: -31.4;
+        }
+    }
+}
+
+.bullet-svg .inner {
+    transition: stroke-dashoffset 0.5s;
+}
