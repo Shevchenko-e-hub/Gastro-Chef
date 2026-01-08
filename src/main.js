@@ -63,3 +63,42 @@ categoryLink.forEach(function (item) {
     item.querySelector("span").classList.remove("hidden");
   });
 });
+
+const circularMenu = document.querySelector(".circular-menu");
+const circularMenuButton = document.querySelector(".circular-menu__button");
+const circularMenuIcon = document.querySelector(".circular-menu__icon use");
+
+circularMenuButton.addEventListener("click", function () {
+  circularMenu.classList.toggle("active");
+
+  if (circularMenu.classList.contains("active")) {
+    circularMenuIcon.setAttribute("href", "#icon-close");
+  } else {
+    circularMenuIcon.setAttribute("href", "#icon-feedback-button");
+  }
+});
+
+document.addEventListener("click", function (event) {
+  const isClickInsideCircular =
+    circularMenu.contains(event.target) ||
+    circularMenuButton.contains(event.target);
+
+  const isClickInsideCategory = Array.from(categoryLink).some((link) =>
+    link.contains(event.target)
+  );
+
+  if (!isClickInsideCircular && circularMenu.classList.contains("active")) {
+    circularMenu.classList.remove("active");
+    circularMenuIcon.setAttribute("href", "#icon-feedback-button");
+  }
+
+  if (!isClickInsideCategory) {
+    const hasActiveCategory = Array.from(categoryLink).some((link) =>
+      link.classList.contains("text-green-400")
+    );
+
+    if (hasActiveCategory) {
+      removeActiveClassesCategoryNav();
+    }
+  }
+});
